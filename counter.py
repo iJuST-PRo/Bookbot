@@ -19,15 +19,11 @@ def main(argv):
         print('Error: The file name/path is incorrect or the file is unreadable')
 
 
-def sort_on(d):
-    return d["num"]
-
-
 def sort_chars(chars_count_dict):
     sorted_chars = []
     for ch in chars_count_dict:
         sorted_chars.append({"chars":ch, "num":chars_count_dict[ch]})
-    sorted_chars.sort(reverse=True, key=sort_on)
+    sorted_chars.sort(reverse=True, key=lambda d: d['num'])
     return sorted_chars
 
 
