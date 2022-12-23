@@ -1,17 +1,22 @@
-book_path = '/home/kali/workspace/github.com/iJuST-PRo/bookbot/books/frankenstein.txt'
+import sys, getopt
 
-def main():
-    text = get_text(book_path)
-    num_words = word_count(text)
-    chars_count_dict = chars_counter(text)
-    fully_sorted = sort_chars(chars_count_dict)
-    print(f'----- Begin Report of {book_path} -----')
-    print(f'{num_words} words found in the book\n')
-    for i in fully_sorted:
-        if not i['chars'].isalpha():
-            continue
-        print(f"letter {i['chars']} was found {i['num']}")
-    print('----- End Report -----')
+
+def main(argv):
+    try:
+        book_path = argv
+        text = get_text(book_path)
+        num_words = word_count(text)
+        chars_count_dict = chars_counter(text)
+        fully_sorted = sort_chars(chars_count_dict)
+        print(f'----- Begin Report of {book_path} -----')
+        print(f'{num_words} words found in the book\n')
+        for i in fully_sorted:
+            if not i['chars'].isalpha():
+                continue
+            print(f"letter {i['chars']} was found {i['num']}")
+        print('\n----- End Report -----')
+    except:
+        print('Error: The file name/path is incorrect or the file is unreadable')
 
 
 def sort_on(d):
@@ -47,4 +52,8 @@ def get_text(path):
         return f.read()
 
 
-main()
+if __name__ == "__main__":
+    try:
+        main(sys.argv[1])
+    except:
+        print(f'Usage: python {sys.argv[0]} <file>')
