@@ -3,5 +3,5 @@ Bookbot is a simple script to read a text files then count the number of words i
 
 ## Usage
 ```
-python counter.py <file>
+python bookbot.py <file>
 ```
